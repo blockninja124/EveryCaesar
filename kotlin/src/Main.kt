@@ -53,7 +53,7 @@ fun decrypt(ciphertext: String, key: Int): String {
     var result = ""
 
     for (i in 0..<ciphertext.length) {
-        val c = ciphertext[i]
+        val c = Character.toUpperCase(ciphertext[i])
         var index = ALPH.indexOf(c)
         if (index == -1) {
             result += c

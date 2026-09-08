@@ -54,7 +54,7 @@ public class Main {
         String result = "";
 
         for (int i = 0; i < ciphertext.length(); i++){
-            char c = ciphertext.charAt(i);        
+            char c = Character.toUpperCase(ciphertext.charAt(i));        
             int index = ALPH.indexOf(c);
             if (index == -1) {
                 result += c;
