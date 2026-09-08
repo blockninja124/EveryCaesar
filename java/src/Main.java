@@ -4,28 +4,26 @@ public class Main {
     public static final String ALPH = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     public static void main(String[] args) {
-        System.out.printf("Enter e/d for encrypt/decrypt: ");
+        System.out.println("Enter e/d for encrypt/decrypt: ");
         
         Scanner sc = new Scanner(System.in);
         String mode = sc.nextLine().trim();
-
-        System.out.println(mode);
         
         if (mode.equals("e")) {
-            System.out.printf("Enter plaintext: ");
+            System.out.println("Enter plaintext: ");
             String plaintext = sc.nextLine();
 
-            System.out.printf("Enter key: ");
+            System.out.println("Enter key: ");
             int key = sc.nextInt();
 
             System.out.println(encrypt(plaintext, key));
         }
 
         if (mode.equals("d")) {
-            System.out.printf("Enter ciphertext: ");
+            System.out.println("Enter ciphertext: ");
             String ciphertext = sc.nextLine();
 
-            System.out.printf("Enter key: ");
+            System.out.println("Enter key: ");
             int key = sc.nextInt();
 
             System.out.println(decrypt(ciphertext, key));
