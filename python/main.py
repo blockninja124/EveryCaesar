@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 ALPH = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 def encrypt(plaintext: str, key: int) -> str:
