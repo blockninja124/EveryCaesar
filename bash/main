@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+
+ALPH="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+encrypt() {
+    local plaintext="$1"
+    local key="$2"
+
+    local result=""
+    local i char upper idx
+
+    for ((i = 0; i < ${#plaintext}; i++)); do
+        char=${plaintext:i:1}
+        upper=${char^^}
+
+        idx=-1
+        if [[ $upper == [A-Z] ]]; then
+            idx=$(( $(printf '%d' "'$upper") - 65 ))
+        fi
+
+        if [[ $idx -eq -1 ]]; then
+            result+="$char"
+        else
+            idx=$(( (idx + key) % 26 ))
+            result+="${ALPH:idx:1}"
+        fi
+    done
+
+    printf '%s\n' "$result"
+}
+
+decrypt() {
+    local ciphertext="$1"
+    local key="$2"
+
+    local result=""
+    local i char upper idx
+
+    for ((i = 0; i < ${#ciphertext}; i++)); do
+        char=${ciphertext:i:1}
+        upper=${char^^}
+
+        idx=-1
+        if [[ $upper == [A-Z] ]]; then
+            idx=$(( $(printf '%d' "'$upper") - 65 ))
+        fi
+
+        if [[ $idx -eq -1 ]]; then
+            result+="$char"
+        else
+            idx=$(( (idx - key % 26 + 26) % 26 ))
+            result+="${ALPH:idx:1}"
+        fi
+    done
+
+    printf '%s\n' "$result"
+}
+
+read -r -p 'Enter e/d for encrypt/decrypt: ' mode
+
+if [[ $mode == "e" ]]; then
+    read -r -p 'Enter plaintext: ' plaintext
+    read -r -p 'Enter key: ' key
+    encrypt "$plaintext" "$key"
+fi
+
+if [[ $mode == "d" ]]; then
+    read -r -p 'Enter ciphertext: ' ciphertext
+    read -r -p 'Enter key: ' key
+    decrypt "$ciphertext" "$key"
+fi
