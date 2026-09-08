@@ -54,7 +54,7 @@ fn encrypt(plaintext: String, key: usize) -> String {
         let index = ALPH.find(c);
         if (index.is_some()) {
             let mut index = index.unwrap() + key;
-            index = index % 25;
+            index = index % 26;
             c = ALPH.as_bytes()[index] as char;
         }
         result.push(c);
@@ -73,7 +73,7 @@ fn decrypt(ciphertext: String, key: usize) -> String {
             // Use i32 for negative numbers, usize for every other step
             let mut index: i32 = (index.unwrap() as i32) - (key as i32);
             // rem_euclid handles negative modulos, % does weird stuff with negative
-            index = index.rem_euclid(25);
+            index = index.rem_euclid(26);
             c = ALPH.as_bytes()[index as usize] as char;
         }
         result.push(c);

@@ -37,7 +37,7 @@ function encrypt(plaintext, key) {
             result += c;
         } else {
             index = index + key;
-            index = index % 25;
+            index = index % 26;
             result += ALPH[index];
         }
     }
@@ -53,7 +53,7 @@ function decrypt(ciphertext, key) {
             result += c;
         } else {
             index = index - key;
-            index = mod(index, 25);
+            index = mod(index, 26);
             result += ALPH[index];
         }
     }

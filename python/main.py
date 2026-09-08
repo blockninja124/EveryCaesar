@@ -5,7 +5,7 @@ def encrypt(plaintext: str, key: int) -> str:
     result = ""
     for letter in plaintext:
         if letter.upper() in ALPH:
-            index = (ALPH.index(letter.upper()) + key) % 25
+            index = (ALPH.index(letter.upper()) + key) % 26
             result += ALPH[index]
         else:
             result += letter
@@ -15,7 +15,7 @@ def decrypt(ciphertext: str, key: int) -> str:
     result = ""
     for letter in ciphertext:
         if letter.upper() in ALPH:
-            index = (ALPH.index(letter.upper()) - key) % 25
+            index = (ALPH.index(letter.upper()) - key) % 26
             result += ALPH[index]
         else:
             result += letter
